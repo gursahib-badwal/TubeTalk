@@ -7,7 +7,7 @@ movies and TV shows.
 
 ## Website Access
 
-To access the website, visit: `http://34.130.196.174/`
+To access the website, visit: `http://34.130.196.174/` - Currently out of service as the VM instance on the GCP is stopped for now.
 
 ## Development Mode
 
