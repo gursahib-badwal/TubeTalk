@@ -1,0 +1,38 @@
+<header>
+  <div class="container">
+    <a routerLink="/" class="logo">TubeTalk</a>
+    <nav>
+      <ul>
+        <li *ngIf="isAuth" class="menu-container">
+          <a routerLink="/dashboard">{{user.name}}</a>
+          <div class="menu">
+            <a routerLink="profile">Profile</a>
+            <a (click)="logout()">Logout</a>
+          </div>
+        </li>
+        <li class="menu-container">
+          <a routerLink="help">Help</a>
+          <div class="menu">
+            <a routerLink="contact">Contact us</a>
+          </div>
+        </li>
+        <li *ngIf="!isAuth">
+          <a routerLink="login">Login</a>
+        </li>
+        <li *ngIf="!isAuth">
+          <a routerLink="register">Create Account</a>
+        </li>
+        <li>
+          <div class="search">
+            <div class="search-box">
+              <form>
+                <input #s type="text" id="search_input" name="box" (keyup.enter)="search(s.value)" [value]="searchTerm" />
+                <button (click)="search(s.value)"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

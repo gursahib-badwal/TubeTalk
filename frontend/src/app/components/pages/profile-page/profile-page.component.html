@@ -1,0 +1,14 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="profile-name">{{user.name}}</div>
+    <button *ngIf="!isEditingName" (click)="startEditingName()">Edit</button>
+  </div>
+  <div class="profile-bio-box">
+    <div *ngIf="!isEditingName">{{user.bio}}</div>
+    <div *ngIf="isEditingName">
+      <textarea [(ngModel)]="newName"></textarea>
+      <button (click)="saveNewName()">Save</button>
+      <button (click)="cancelEditingName()">Cancel</button>
+    </div>
+  </div>
+</div>

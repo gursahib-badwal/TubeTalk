@@ -1,0 +1,34 @@
+div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  margin: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: lightcoral;
+}
+
+a:hover {
+  background-color: #ccc;
+}
+
+.select {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: lightcoral;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+select:hover {
+  border: 1px solid grey;
+}

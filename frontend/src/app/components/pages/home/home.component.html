@@ -1,0 +1,52 @@
+<app-tags [moviesTags]="moviesTags" [genresInfo]="genresInfo" (filterYear)="filterYear($event)" (filterGenre)="filterGenre($event)"></app-tags>
+<app-not-found
+[visible]="!movies || !movies.length"
+resetLinkText="Reset Search"
+></app-not-found>
+<h1 style="text-align: left; color:lightcoral; margin-left: 20px;">Movies:</h1>
+<ul>
+  <li *ngFor="let movie of movies">
+    <a routerLink="/movie/{{movie.id}}">
+      <img src = 'https://image.tmdb.org/t/p/original/{{movie.imageUrl}}' [alt] = "movie.name" />
+      <div class="content">
+        <div class="name">
+          {{movie.name}}
+        </div>
+        <div class="product-item-footer" >
+          <div class="genre">
+            <span *ngFor="let genre of movie.genre" [title]="setMovieGenresTitle(genre)">
+              {{setMovieGenresTitle(genre)}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+<br>
+<br>
+<h1 style="text-align: left; color:lightcoral; margin-left: 20px;">TV Shows:</h1>
+<app-not-found
+[visible]="!allTvShows || !allTvShows.length"
+resetLinkText="Reset Search"
+></app-not-found>
+<ul>
+  <li *ngFor="let tvShow of allTvShows">
+    <a routerLink="/tvShow/{{tvShow.id}}">
+      <img  src = 'https://image.tmdb.org/t/p/original/{{tvShow.poster_path}}' [alt] = "tvShow.name" />
+      <div class="content">
+        <div class="name">
+          {{tvShow.name}}
+        </div>
+        <div class="product-item-footer" >
+          <div class="genre">
+            <span *ngFor="let genre of tvShow.genre_ids" [title]="setTvShowGenresTitle(genre)">
+              {{setTvShowGenresTitle(genre)}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </li>
+
+</ul>

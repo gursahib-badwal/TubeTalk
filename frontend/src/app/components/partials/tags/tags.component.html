@@ -1,0 +1,14 @@
+<div *ngIf="tags">
+  <a *ngFor="let tag of tags" routerLink="/tag/{{tag.name}}" (click)="test(tag.name)">
+    {{tag.name}}({{tag.count}})
+  </a>
+  <select class="select" (change)="onChange($event)" *ngIf="genresInfo?.length">
+    <option value="">{{selectedGenres ? selectedGenres : '--Select Genres--'}}</option>
+    <option *ngFor="let genres of genresInfo" [value] ="genres.name">{{genres.name}}</option>
+  </select>
+
+  <select class="select" (change)="setYear($event)" *ngIf="years?.length">
+    <option value="">{{'--Select year--'}}</option>
+    <option *ngFor="let year of years" [value] ="year">{{year}}</option>
+  </select>
+</div>

@@ -1,0 +1,66 @@
+<app-not-found
+[visible]="!movie"
+notFoundMessage="No Movie Found"
+resetLinkText="Back to Homepage">
+</app-not-found>
+<div *ngIf="movie" class="container">
+  <span class="name">
+    {{movie.name}}
+  </span>
+  <img class="movie-poster" *ngIf="apiMovie" src = 'https://image.tmdb.org/t/p/original/{{movie.imageUrl}}' [alt]="movie.name" />
+  <img *ngIf="!apiMovie" [src]="movie.imageUrl" [alt]="movie.name" />
+  <div class="movie-plot">
+    <h3>Plot:</h3>
+    <span>{{movie.overview}}</span>
+  </div>
+  <div class="icon-insta">
+    <img class="insta" src="../../../../assets/twitter.png" (click)="setTwitterLink(movie)" />
+    <img class="insta" src="../../../../assets/facebook.png" (click)="setFaceBookLink(movie)"/>
+    <img *ngIf="movie.homepage" class="insta" src="../../../../assets/movie-clapper-open.png" (click)="movieLink(movie)" />
+  </div>
+  <div class="details">
+    <div class="header">
+      <span class="favorite {{movie.favorite ? '': 'not'}}" (click)="addMovieFav(movie)"><mat-icon>bookmark</mat-icon></span>
+    </div>
+  </div>
+  <div class="tags">
+    <a *ngFor="let tag of movie.genre" routerLink="/tag/{{setMovieTag(tag)}}">
+      {{setMovieTag(tag)}}
+    </a>
+  </div>
+<div class="r-container">
+  <div class="inputbox">
+    <input type="number" min="0" max="10" id="floatingTextarea" [(ngModel)] = "temp_review.rating">
+    <span>Your Rating: {{ temp_review.rating }}</span>
+  </div>
+  <br>
+  <div class="textbox">
+    <textarea class="form-control" id="note_heading" [(ngModel)] = "temp_review.comment" > </textarea>
+    <span>Your Review: {{ temp_review.comment.substring(0, 25) }}{{ temp_review.comment.length > 20 ? '...' : '' }}</span>
+  </div>
+  <mat-icon id="savebtn" class="btn btn-primary" (click)="submit_review()">done_all</mat-icon>
+</div>
+
+<section class="main">
+  <div class="full-boxer">
+    <div class="comment-box" *ngFor="let review of reviews_array">
+      <div class="box-top">
+        <div class="Profile">
+          <div class="profile-image">
+            <img src="assets/icon.png">
+          </div>
+          <div class="Name">
+            <strong>{{review.userName}}</strong> <span>{{review.rating}}/10</span>
+          </div><span class="star"><mat-icon>star</mat-icon></span>
+        </div>
+        <span class="delete-comment"><mat-icon *ngIf="review.userId === checker()" id="del" type="button" class="btn btn-primary btn-sm" (click)="delete_review(review.reviewId, review.userId)">delete_outline</mat-icon></span>
+      </div>
+      <div class="comment">
+        <p>
+          {{review.comment}}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
